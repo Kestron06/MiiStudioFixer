@@ -54,3 +54,6 @@ Import and Export buttons were also added to the edited modals simply because it
   <a href="images/readme-examples/miiCreationModal.png"><img src="images/readme-examples/miiCreationModal.png" alt="Create Mii menu with Create, Restore, and Import options" width="900"></a><br>
   <sub>Restore a Mii instead of creating one.</sub>
 </p>
+
+## Using
+For right now you can download the latest .zip from [Releases](https://github.com/Kestron06/MiiStudioFixer/releases). In your browser of choice, go to your extensions page, enable Dev Mode, select something to the effect of "Load Unpacked", and find the extracted zip download. Publishing to extension stores is pending.
