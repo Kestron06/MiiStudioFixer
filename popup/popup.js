@@ -2,7 +2,7 @@ const PREVIEW_MODE_STORAGE_KEY = 'mii-studio-fixer-preview-mode';
 const LEGACY_PREVIEW_STORAGE_KEY = 'mii-studio-mii-loader-preview-enabled';
 const STORED_MIIS_STORAGE_KEY = 'mii-studio-fixer-stored-miis-v1';
 const VALID_MODES = new Set(['floating', 'replace', 'off']);
-const HEX_ID = /^[a-f0-9]{16}$/;
+const PAGE_STATUS_REQUEST = 'mii-studio-fixer:popup-page-status';
 
 const options = document.getElementById('preview-options');
 const modeInputs = [...document.querySelectorAll('input[name="preview-mode"]')];
@@ -161,103 +161,28 @@ function showWarning(kind) {
 	warning.hidden = false;
 }
 
-async function readPageMiiData(tabId, canonicalKey) {
-	const [{ result }] = await chrome.scripting.executeScript({
-		target: { tabId },
-		args: [canonicalKey],
-		func: function(fallbackKey) {
-			return localStorage.getItem(encodeURIComponent(location.href))
-				|| localStorage.getItem(fallbackKey);
-		}
-	});
-	return result;
-}
-
-async function recoverPageMiiData(tabId, canonicalKey) {
-	const [{ result }] = await chrome.scripting.executeScript({
-		target: { tabId },
-		world: 'MAIN',
-		args: [canonicalKey],
-		func: async function(fallbackKey) {
-			const currentUrl = new URL(location.href);
-			const expectedUrl = new URL(decodeURIComponent(fallbackKey));
-			if (currentUrl.origin !== expectedUrl.origin
-				|| currentUrl.pathname.replace(/\/$/, '') !== expectedUrl.pathname
-				|| currentUrl.searchParams.get('client_id') !== expectedUrl.searchParams.get('client_id')) {
-				return null;
-			}
-
-			const exactKey = encodeURIComponent(location.href);
-			const existing = localStorage.getItem(exactKey) || localStorage.getItem(fallbackKey);
-			if (existing) {
-				return existing;
-			}
-
-			for (let attempt = 0; attempt < 20; attempt++) {
-				const canvas = document.querySelector('canvas#canvas');
-				for (let element = canvas; element; element = element.parentElement) {
-					for (let editor = element.__vue__; editor; editor = editor.$parent) {
-						if (editor.isPartsPage !== true || !editor.history?.current
-							|| typeof editor.onPartsUpdated !== 'function') {
-							continue;
-						}
-						editor.onPartsUpdated(editor.history.current);
-						return localStorage.getItem(exactKey) || localStorage.getItem(fallbackKey);
-					}
-				}
-				await new Promise(resolve => setTimeout(resolve, 100));
-			}
-			return null;
-		}
-	});
-	return result;
-}
-
 async function checkCurrentPage() {
 	try {
 		const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-		let url;
+		if (!Number.isInteger(tab?.id)) {
+			showWarning('wrong-page');
+			return;
+		}
+		let page;
 		try {
-			url = new URL(tab?.url ?? '');
+			page = await chrome.tabs.sendMessage(tab.id, { type: PAGE_STATUS_REQUEST });
 		} catch {
 			showWarning('wrong-page');
 			return;
 		}
-		if (url.origin !== 'https://studio.mii.nintendo.com') {
-			showWarning('wrong-page');
-			return;
-		}
-		if (url.pathname === '/miis/new') {
+		if (page?.status === 'new') {
 			warning.textContent = 'The Mii must be saved once before we can process it.';
 			warning.hidden = false;
 			return;
 		}
-		const clientId = url.searchParams.get('client_id');
-		if (url.pathname === '/' && HEX_ID.test(clientId ?? '')) {
-			return;
-		}
-		if (!/^\/miis\/[^/]+\/edit\/?$/.test(url.pathname)) {
-			showWarning('wrong-page');
-			return;
-		}
-		const miiId = url.pathname.split('/')[2];
-		if (!HEX_ID.test(miiId) || !HEX_ID.test(clientId ?? '')) {
-			showWarning('missing-id');
-			return;
-		}
-
-		const canonicalKey = encodeURIComponent(`https://studio.mii.nintendo.com/miis/${miiId}/edit?client_id=${clientId}`);
-		let data = await readPageMiiData(tab.id, canonicalKey);
-		if (!data) {
-			try {
-				data = await recoverPageMiiData(tab.id, canonicalKey);
-			} catch (error) {
-				console.warn('Could not load the current Mii from the editor.', error);
-			}
-		}
-		if (!data) {
-			showWarning('missing-data');
-		}
+		if (page?.status === 'ready') return;
+		showWarning(['wrong-page', 'missing-id', 'missing-data'].includes(page?.status)
+			? page.status : 'init-error');
 	} catch (error) {
 		console.error('Failed to initialize popup', error);
 		showWarning('init-error');

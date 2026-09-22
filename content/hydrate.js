@@ -38,7 +38,7 @@
 		}
 
 		editor.onPartsUpdated(editor.history.current);
-		return localStorage.getItem(key) ? 'hydrated' : 'unavailable';
+		return localStorage.getItem(key) ? 'hydrated' : 'no-data';
 	}
 
 	document.addEventListener(REQUEST_EVENT, () => {

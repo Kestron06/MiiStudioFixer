@@ -23,8 +23,8 @@ The main inciting thing was that it fixed Mii Studio's absolutely awful fake hac
     <th align="center">Replaced preview</th>
   </tr>
   <tr>
-    <td align="center" width="50%"><a href="images/readme-examples/jerryFloatingFix.png"><img src="images/readme-examples/jerryFloatingFix.png" alt="Mii Studio editor with the corrected full-body Mii in a floating preview" width="460"></a></td>
-    <td align="center" width="50%"><a href="images/readme-examples/jerryReplacedFix.png"><img src="images/readme-examples/jerryReplacedFix.png" alt="Mii Studio editor with the corrected full-body Mii replacing the original preview" width="460"></a></td>
+    <td align="center" width="50%"><a href="images/readme-examples/jerryFloatingFix.jpg"><img src="images/readme-examples/jerryFloatingFix.jpg" alt="Mii Studio editor with the corrected full-body Mii in a floating preview" width="460"></a></td>
+    <td align="center" width="50%"><a href="images/readme-examples/jerryReplacedFix.jpg"><img src="images/readme-examples/jerryReplacedFix.jpg" alt="Mii Studio editor with the corrected full-body Mii replacing the original preview" width="460"></a></td>
   </tr>
   <tr>
     <td align="center"><sub>Keep the editor preview and move the corrected render around.</sub></td>
@@ -41,19 +41,23 @@ Import and Export buttons were also added to the edited modals simply because it
 <hr>
 
 <p align="center">
-  <a href="images/readme-examples/miiSelectionModal.png"><img src="images/readme-examples/miiSelectionModal.png" alt="Saved Mii menu with Store and Export options" width="900"></a><br>
+  <a href="images/readme-examples/miiSelectionModal.jpg"><img src="images/readme-examples/miiSelectionModal.jpg" alt="Saved Mii menu with Store and Export options" width="900"></a><br>
   <sub>Added ability to store locally.</sub>
 </p>
 
 <p align="center">
-  <a href="images/readme-examples/miiStorageModal.png"><img src="images/readme-examples/miiStorageModal.png" alt="Store Mii confirmation asking for a name" width="900"></a><br>
+  <a href="images/readme-examples/miiStorageModal.jpg"><img src="images/readme-examples/miiStorageModal.jpg" alt="Store Mii confirmation asking for a name" width="900"></a><br>
   <sub>Set the name before storing in the extension locally.</sub>
 </p>
 
 <p align="center">
-  <a href="images/readme-examples/miiCreationModal.png"><img src="images/readme-examples/miiCreationModal.png" alt="Create Mii menu with Create, Restore, and Import options" width="900"></a><br>
+  <a href="images/readme-examples/miiCreationModal.jpg"><img src="images/readme-examples/miiCreationModal.jpg" alt="Create Mii menu with Create, Restore, and Import options" width="900"></a><br>
   <sub>Restore a Mii instead of creating one.</sub>
 </p>
 
 ## Using
 For right now you can download the latest .zip from [Releases](https://github.com/Kestron06/MiiStudioFixer/releases). In your browser of choice, go to your extensions page, enable Dev Mode, select something to the effect of "Load Unpacked", and find the extracted zip download. Publishing to extension stores is pending.
+
+## Privacy
+
+See the [Privacy Policy](PRIVACY.md).

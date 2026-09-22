@@ -3,7 +3,7 @@
 	"name": "MiiStudioFixer",
 	"description": "Fix My Nintendo Mii Studio to be an actually usable Mii Editor.",
 	"version": "1.0.0",
-	"permissions": ["storage", "activeTab", "scripting"],
+	"permissions": ["storage"],
 	"icons": {
 		"16": "images/icon-16.png",
 		"32": "images/icon-32.png",
@@ -21,6 +21,11 @@
 			"js": ["content/list-store.js", "content/list-delete.js", "content/list-create.js", "content/list-restore.js"],
 			"run_at": "document_start",
 			"world": "MAIN"
+		},
+		{
+			"matches": ["https://studio.mii.nintendo.com/*"],
+			"js": ["content/popup-bridge.js"],
+			"run_at": "document_start"
 		},
 		{
 			"matches": ["https://studio.mii.nintendo.com/*"],
