@@ -6,7 +6,7 @@
 		['CHARINFO', '.CHARINFO | Switch/2'],
 		['NFCD', '.NFCD | Switch/2'],
 		['FSDEX', '.FSDEX | Switch 2/Amiibo'],
-		['PNG_ALL', '.PNG | Switch 2 QR'],
+		['PNG_ALL', '.PNG | All QR'],
 		['CFCD', '.CFSD/.FFSD | 3DS/Wii U (ver3)'],
 		['RCD', '.RCD | Wii'],
 		['NCD', '.NCD | DS']
