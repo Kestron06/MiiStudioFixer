@@ -1,0 +1,125 @@
+#mii-studio-fixer-store-option,
+#mii-studio-fixer-export-option {
+	cursor: pointer;
+}
+
+#mii-studio-fixer-store-option:focus-visible,
+#mii-studio-fixer-export-option:focus-visible {
+	outline: 3px solid #e60012;
+	outline-offset: 3px;
+}
+
+#mii-studio-fixer-list-dialog {
+	position: fixed;
+	inset: 0;
+	z-index: 2147483647;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 20px;
+	background: rgba(0, 0, 0, .55);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#mii-studio-fixer-list-dialog[hidden] {
+	display: none;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-panel {
+	box-sizing: border-box;
+	width: min(420px, 100%);
+	max-height: min(80vh, 650px);
+	overflow: auto;
+	padding: 25px 26px;
+	border-radius: 16px;
+	background: #fff;
+	box-shadow: 0 14px 45px rgba(0, 0, 0, .28);
+	color: #333;
+	text-align: center;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-message {
+	margin: 0 0 18px;
+	font-size: 17px;
+	line-height: 1.5;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-name {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0 0 16px;
+	padding: 11px 13px;
+	border: 1px solid #aaa;
+	border-radius: 7px;
+	background: #fff;
+	color: #333;
+	font: inherit;
+	font-size: 17px;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-name:focus-visible {
+	outline: 3px solid #e60012;
+	outline-offset: 2px;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-actions,
+#mii-studio-fixer-list-dialog .mii-studio-fixer-choices {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+#mii-studio-fixer-list-dialog button {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 43px;
+	padding: 9px 15px;
+	border: 1px solid #c9c9c9;
+	border-radius: 24px;
+	background: #fff;
+	color: #333;
+	font: inherit;
+	font-size: 17px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+#mii-studio-fixer-list-dialog button:hover {
+	border-color: #e60012;
+	color: #e60012;
+}
+
+#mii-studio-fixer-list-dialog button:focus-visible {
+	outline: 3px solid #e60012;
+	outline-offset: 2px;
+}
+
+#mii-studio-fixer-list-dialog button:disabled {
+	opacity: .55;
+	cursor: wait;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-primary {
+	border-color: #e60012;
+	background: #e60012;
+	color: #fff;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-primary:hover {
+	border-color: #bc0010;
+	background: #bc0010;
+	color: #fff;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-error {
+	margin: 0 0 14px;
+	color: #b00020;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+#mii-studio-fixer-list-dialog .mii-studio-fixer-error:empty {
+	display: none;
+}

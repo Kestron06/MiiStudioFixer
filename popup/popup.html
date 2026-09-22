@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>MiiStudioFixer</title>
+		<link rel="stylesheet" href="popup.css">
+		<script src="popup.js" defer></script>
+	</head>
+	<body>
+		<main>
+			<div class="heading">
+				<h1>MiiStudioFixer</h1>
+				<div class="heading-links">
+					<a href="https://github.com/Kestron06/MiiStudioFixer" id="gitLink" class="heading-link" target="_blank" rel="noopener noreferrer" aria-label="Open MiiStudioFixer on GitHub"><img src="https://github.com/favicon.ico" alt=""></a>
+					<a href="https://infinimii.com/" id="infinimiiLink" class="heading-link" target="_blank" rel="noopener noreferrer" aria-label="Open InfiniMii"><img src="https://infinimii.com/assets/favicon.ico" alt=""></a>
+				</div>
+			</div>
+			<hr>
+			<fieldset id="preview-options" disabled>
+				<legend>Corrected Preview Mode</legend>
+				<label class="mode-option"><input type="radio" name="preview-mode" value="floating"><span>Floating Corrected Preview</span></label>
+				<label class="mode-option"><input type="radio" name="preview-mode" value="replace"><span>Replace Broken Preview</span></label>
+				<label class="mode-option"><input type="radio" name="preview-mode" value="off"><span>Off</span></label>
+			</fieldset>
+			<section class="stored-miis" aria-labelledby="stored-miis-heading">
+				<h2 id="stored-miis-heading">Stored Miis</h2>
+				<p id="stored-empty" class="stored-empty">No Miis stored yet.</p>
+				<ul id="stored-list" class="stored-list" aria-label="Stored Miis" hidden></ul>
+				<p id="stored-status" class="stored-status" role="status" aria-live="polite"></p>
+			</section>
+			<div id="page-warning" class="warning" role="alert" hidden></div>
+		</main>
+		<dialog id="delete-confirmation" class="delete-confirmation" aria-labelledby="delete-confirmation-heading" aria-describedby="delete-confirmation-message">
+			<h2 id="delete-confirmation-heading">Delete stored Mii?</h2>
+			<p id="delete-confirmation-message"></p>
+			<p id="delete-error" class="stored-status" role="alert" hidden></p>
+			<div class="dialog-actions">
+				<button id="delete-cancel" type="button">Cancel</button>
+				<button id="delete-confirm" class="danger-button" type="button">Delete</button>
+			</div>
+		</dialog>
+	</body>
+</html>
